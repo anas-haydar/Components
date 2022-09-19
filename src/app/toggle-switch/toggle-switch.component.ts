@@ -18,20 +18,20 @@ export class ToggleSwitchComponent implements OnInit {
   @Input('inactiveCircleColor') inactiveCircleColor!: string;
   @Input('activeBackgroundColor') activeBackgroundColor!: string;
   @Input('inactiveBackgroundColor') inactiveBackgroundColor!: string;
-  @Input('toggleHeight') toggleHeight!: string;
-  @Input('toggleWidth') toggleWidth!: string;
+  @Input('height') toggleHeight!: string;
+  @Input('width') toggleWidth!: string;
   @Input('defaultChecked') defaultChecked: boolean = false;
   @Input('disabled') disabled: boolean = false;
 
-  @Output() onToggle: EventEmitter<boolean> = new EventEmitter();
-  
+  @Output('toggle') toggle: EventEmitter<boolean> = new EventEmitter();
+
   @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
   toggleSwitch!: HTMLInputElement;
 
   constructor() {}
 
   handleToggle() {
-    this.onToggle.emit(this.inputRef?.nativeElement.checked);
+    this.toggle.emit(this.inputRef?.nativeElement.checked);
   }
 
   ngOnInit(): void {}

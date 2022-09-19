@@ -24,9 +24,10 @@ export class Item {
   styleUrls: ['./auto-complete.component.css'],
 })
 export class AutoCompleteComponent implements OnInit, OnDestroy {
+  activeTabIndex: number = 0;
+  disabledTabIndex: number = -1;
   inputOnFocus: boolean = false;
   noDataAvailable: boolean = false;
-  activeItem: number = -1;
   inputText: string = '';
 
   @Input('dataSource') dataSource: Item[] = [];
@@ -36,7 +37,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
   @Input('width') width: string = '';
   @Input('inputFontFamily') inputFontFamily: string = '';
 
-  @Output('onSelectItem') onSelectItem: EventEmitter<Item> = new EventEmitter();
+  @Output('select') onItemSelect: EventEmitter<Item> = new EventEmitter();
 
   @ViewChild('hostRef') hostRef!: ElementRef<HTMLDivElement>;
 
@@ -57,33 +58,6 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
     this.destroyCloseOnOutsideClick();
   }
 
-  get filteredItems() {
-    if (this.inputText.length > 0) {
-      this.noDataAvailable =
-        this.filterItems(this.inputText).length === 0 ? true : false;
-      return this.filterItems(this.inputText);
-    } else {
-      return [];
-    }
-  }
-
-  filterItems(name: string) {
-    this.activeItem = -1;
-    let filteredItems = this.dataSource.filter((item) =>
-      item.name.toLocaleLowerCase().includes(name.toLowerCase())
-    );
-    return filteredItems;
-  }
-
-  handleInputChange() {
-    this.inputOnFocus = this.inputText !== '';
-  }
-
-  selectItem(item: Item) {
-    this.resetActiveItem();
-    this.onSelectItem.emit(item);
-  }
-
   initCloseOnOutsideClick() {
     this.onExternalClickSubscription = this.onExternalClickObservable.subscribe(
       (event: any) => {
@@ -98,24 +72,61 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
     this.onExternalClickSubscription.unsubscribe();
   }
 
+  get filteredItems() {
+    if (this.inputText.length > 0) {
+      this.noDataAvailable =
+        this.filterItems(this.inputText).length === 0 ? true : false;
+      return this.filterItems(this.inputText);
+    } else {
+      return [];
+    }
+  }
+
+  filterItems(name: string) {
+    let filteredItems = this.dataSource.filter((item) =>
+      item.name.toLocaleLowerCase().includes(name.toLowerCase())
+    );
+    return filteredItems;
+  }
+
+  handleInputChange() {
+    this.inputOnFocus = this.inputText !== '';
+  }
+
+  selectItem(item: Item) {
+    this.resetActiveItem();
+    this.onItemSelect.emit(item);
+  }
+
   handleKeydown(event: KeyboardEvent) {
     event.stopImmediatePropagation();
     let activeElement = document.activeElement as HTMLElement;
+    let keyPressed = event.key || event.keyCode;
 
-    if (event.keyCode === DOWN_ARROW) {
-      this.handleDownArrow(activeElement);
-    } else if (event.keyCode === UP_ARROW) {
-      this.handleUpArrow(activeElement);
-    } else if (event.keyCode === ENTER) {
-      activeElement.click();
-      this.resetActiveItem();
-    } else if (event.keyCode === TAB) {
-      this.inputOnFocus = false;
-    } else {
-      let inputField = activeElement?.parentElement?.previousElementSibling;
-      if (inputField) {
-        this.changeFocusedElement(activeElement, inputField);
-      }
+    switch (keyPressed) {
+      case 'ArrowDown' || DOWN_ARROW:
+        this.handleDownArrow(activeElement);
+        break;
+
+      case 'ArrowUp' || UP_ARROW:
+        this.handleUpArrow(activeElement);
+        break;
+
+      case 'Enter' || ENTER:
+        activeElement.click();
+        this.resetActiveItem();
+        break;
+
+      case 'Tab' || TAB:
+        this.inputOnFocus = false;
+        break;
+
+      default:
+        let inputField = activeElement?.parentElement?.previousElementSibling;
+        if (inputField) {
+          this.changeFocusedElement(activeElement, inputField);
+        }
+        break;
     }
   }
 
@@ -135,18 +146,17 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeFocusedElement(activeElement: Element, otherElement: Element) {
+  changeFocusedElement(activeElement: Element, nextActiveElement: Element) {
     let activeHtmlElement = activeElement as HTMLElement;
-    activeHtmlElement.tabIndex = -1;
+    activeHtmlElement.tabIndex = this.disabledTabIndex;
 
-    let otherHtmlElement = otherElement as HTMLElement;
-    otherHtmlElement.tabIndex = 0;
+    let otherHtmlElement = nextActiveElement as HTMLElement;
+    otherHtmlElement.tabIndex = this.activeTabIndex;
     otherHtmlElement.focus();
   }
 
   resetActiveItem(): void {
     this.inputText = '';
     this.inputOnFocus = false;
-    this.activeItem = -1;
   }
 }

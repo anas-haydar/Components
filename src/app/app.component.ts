@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   items = fakeData;
   dropdownSettings: IDropdownSettings = {};
   ngOnInit() {}
-  onItemSelect(item: any) {
+  getSelectedItem(item: any) {
     console.log(item);
   }
   onSelectAll(items: any) {

@@ -1,52 +1,12 @@
-<!-- <div style="margin: 5vh"></div>
-<app-toggle-switch
-></app-toggle-switch>
-<div style="margin: 5vh"></div>
-
-<app-toggle-switch
-  toggleHeight="80px"
-  toggleWidth="160px"
-  (onToggle)="handleToggle($event)"
-  [defaultChecked]="false"
-  [disabled]="true"
-></app-toggle-switch>
-<div style="margin: 5vh"></div>
-
-<app-toggle-switch
-  toggleHeight="80px"
-  toggleWidth="160px"
-  (onToggle)="handleToggle($event)"
-  [defaultChecked]="true"
-  [disabled]="true"
-></app-toggle-switch>
-<div style="margin: 5vh"></div>
-
-<app-toggle-switch
-  activeCircleColor="lightseagreen"
-  inactiveCircleColor="grey"
-  activeBackgroundColor="lightgreen"
-  inactiveBackgroundColor="lightblue"
-  toggleHeight="60px"
-  toggleWidth="120px"
-  (onToggle)="handleToggle($event)"
-></app-toggle-switch>
-<div style="margin: 5vh"></div>
-
-<app-toggle-switch
-  activeCircleColor="lightseagreen"
-  inactiveCircleColor="grey"
-  activeBackgroundColor="lightgreen"
-  inactiveBackgroundColor="lightblue"
-  toggleHeight="40px"
-  toggleWidth="90px"
-  (onToggle)="handleToggle($event)"
-></app-toggle-switch>
-
-<div style="margin: 5vh"></div>
-
-<app-toggle-switch></app-toggle-switch> -->
-
-<app-auto-complete [dataSource]="items" (onSelectItem)="onItemSelect($event)">
+<app-auto-complete
+  [dataSource]="items"
+  placeHolder="Find an item"
+  (select)="getSelectedItem($event)"
+  [outlineColor]="'lightblue'"
+  [borderColor]="'#c8c8c8'"
+  inputFontFamily="'Courier New', Courier, monospace"
+  width="200px"
+>
   <ng-template let-item #rowTemplate>
     <div style="display: flex; align-items: center; width: 100%">
       <span [class]="'bug'" [ngClass]="'span-pic'"></span>
@@ -54,19 +14,58 @@
     </div>
   </ng-template>
 </app-auto-complete>
-<app-auto-complete [dataSource]="items" (onSelectItem)="onItemSelect($event)">
-  <ng-template let-item #rowTemplate>
-    <div style="display: flex; align-items: center; width: 100%">
-      <span [class]="'bug'" [ngClass]="'span-pic'"></span>
-      <span>{{ item.name }}</span>
-    </div>
-  </ng-template>
-</app-auto-complete>
-<app-auto-complete [dataSource]="items" (onSelectItem)="onItemSelect($event)">
-  <ng-template let-item #rowTemplate>
-    <div style="display: flex; align-items: center; width: 100%">
-      <span [class]="'bug'" [ngClass]="'span-pic'"></span>
-      <span>{{ item.name }}</span>
-    </div>
-  </ng-template>
-</app-auto-complete>
+
+<div style="margin: 10vh">
+  <app-auto-complete
+    [dataSource]="items"
+    placeHolder="Find an item"
+    (select)="getSelectedItem($event)"
+    [outlineColor]="'lightblue'"
+    [borderColor]="'#c8c8c8'"
+    inputFontFamily="'Courier New', Courier, monospace"
+    width="300px"
+  >
+    <ng-template let-item #rowTemplate>
+      <div style="display: flex; align-items: center; width: 100%">
+        <span [class]="'bug'" [ngClass]="'span-pic'"></span>
+        <span>{{ item.name }}</span>
+      </div>
+    </ng-template>
+  </app-auto-complete>
+</div>
+<div style="margin: 10vh">
+  <app-auto-complete
+    [dataSource]="items"
+    placeHolder="Find an item"
+    (select)="getSelectedItem($event)"
+    [outlineColor]="'lightblue'"
+    [borderColor]="'#c8c8c8'"
+    inputFontFamily="'Courier New', Courier, monospace"
+    width="300px"
+  >
+    <ng-template let-item #rowTemplate>
+      <div style="display: flex; align-items: center; width: 100%">
+        <span [class]="'bug'" [ngClass]="'span-pic'"></span>
+        <span>{{ item.name }}</span>
+      </div>
+    </ng-template>
+  </app-auto-complete>
+</div>
+<div style="margin: 10vh">
+  <app-auto-complete
+    [dataSource]="items"
+    placeHolder="Find an item"
+    (select)="getSelectedItem($event)"
+    [outlineColor]="'lightblue'"
+    [borderColor]="'#c8c8c8'"
+    inputFontFamily="'Courier New', Courier, monospace"
+    width="300px"
+  >
+    <ng-template let-item #rowTemplate>
+      <div style="display: flex; align-items: center; width: 100%">
+        <span [class]="'bug'" [ngClass]="'span-pic'"></span>
+        <span>{{ item.name }}</span>
+      </div>
+    </ng-template>
+  </app-auto-complete>
+</div>
