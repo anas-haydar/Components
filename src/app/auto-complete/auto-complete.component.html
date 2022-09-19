@@ -28,8 +28,8 @@
       [tabindex]="i === 0 ? 0 : -1"
     >
       <ng-container
-        *ngIf="headerTemplateRef"
-        [ngTemplateOutlet]="headerTemplateRef"
+        *ngIf="itemTemplateRef"
+        [ngTemplateOutlet]="itemTemplateRef"
         [ngTemplateOutletContext]="{ $implicit: item }"
       >
       </ng-container>

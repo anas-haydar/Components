@@ -41,7 +41,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
 
   @ViewChild('hostRef') hostRef!: ElementRef<HTMLDivElement>;
 
-  @ContentChild('rowTemplate', { static: false }) headerTemplateRef:
+  @ContentChild('itemTemplate', { static: false }) itemTemplateRef:
     | TemplateRef<any>
     | undefined;
 

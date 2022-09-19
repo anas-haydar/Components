@@ -7,7 +7,7 @@
   inputFontFamily="'Courier New', Courier, monospace"
   width="200px"
 >
-  <ng-template let-item #rowTemplate>
+  <ng-template let-item #itemTemplate>
     <div style="display: flex; align-items: center; width: 100%">
       <span [class]="'bug'" [ngClass]="'span-pic'"></span>
       <span>{{ item.name }}</span>
@@ -25,7 +25,7 @@
     inputFontFamily="'Courier New', Courier, monospace"
     width="300px"
   >
-    <ng-template let-item #rowTemplate>
+    <ng-template let-item #itemTemplate>
       <div style="display: flex; align-items: center; width: 100%">
         <span [class]="'bug'" [ngClass]="'span-pic'"></span>
         <span>{{ item.name }}</span>
@@ -43,7 +43,7 @@
     inputFontFamily="'Courier New', Courier, monospace"
     width="300px"
   >
-    <ng-template let-item #rowTemplate>
+    <ng-template let-item #itemTemplate>
       <div style="display: flex; align-items: center; width: 100%">
         <span [class]="'bug'" [ngClass]="'span-pic'"></span>
         <span>{{ item.name }}</span>
@@ -57,11 +57,11 @@
     placeHolder="Find an item"
     (select)="getSelectedItem($event)"
     [outlineColor]="'lightblue'"
-    [borderColor]="'#c8c8c8'"
+    [borderColor]="'red'"
     inputFontFamily="'Courier New', Courier, monospace"
     width="300px"
   >
-    <ng-template let-item #rowTemplate>
+    <ng-template let-item #itemTemplate>
       <div style="display: flex; align-items: center; width: 100%">
         <span [class]="'bug'" [ngClass]="'span-pic'"></span>
         <span>{{ item.name }}</span>
