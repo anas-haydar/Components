@@ -7,10 +7,9 @@ import { ToggleSwitchComponent } from './toggle-switch/toggle-switch.component';
 import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ExactESignatureComponent } from './exact-e-signature/exact-e-signature.component';
 
 @NgModule({
-  declarations: [AppComponent, AutoCompleteComponent, ExactESignatureComponent],
+  declarations: [AppComponent, AutoCompleteComponent],
   imports: [
     BrowserModule,
     NgMultiSelectDropDownModule.forRoot(),
@@ -20,8 +19,5 @@ import { ExactESignatureComponent } from './exact-e-signature/exact-e-signature.
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    ExactESignatureComponent
-  ],
 })
 export class AppModule {}
