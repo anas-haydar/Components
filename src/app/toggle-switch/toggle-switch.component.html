@@ -16,6 +16,13 @@
       [checked]="defaultChecked"
       [disabled]="disabled"
     />
-    <span class="slider round"></span>
+    <span class="slider round">
+      <span class="left-icon">
+        <ng-content select="[left]"></ng-content>
+      </span>
+      <span class="right-icon">
+        <ng-content select="[right]"></ng-content>
+      </span>
+    </span>
   </label>
 </div>

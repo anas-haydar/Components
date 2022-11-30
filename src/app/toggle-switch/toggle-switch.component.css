@@ -100,3 +100,15 @@
   background-color: #b3d7ff;
   border-color: #b3d7ff;
 }
+
+.slider {
+  display: flex;
+  justify-content: space-around;
+}
+.left-icon,
+.right-icon {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+}

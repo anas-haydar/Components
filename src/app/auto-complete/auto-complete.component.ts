@@ -95,6 +95,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
 
   selectItem(item: Item) {
     this.resetActiveItem();
+    this.inputText = '';
     this.onItemSelect.emit(item);
   }
 
@@ -115,6 +116,8 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
       case 'Enter' || ENTER:
         activeElement.click();
         this.resetActiveItem();
+        this.inputText = '';
+
         break;
 
       case 'Tab' || TAB:
@@ -156,7 +159,6 @@ export class AutoCompleteComponent implements OnInit, OnDestroy {
   }
 
   resetActiveItem(): void {
-    this.inputText = '';
     this.inputOnFocus = false;
   }
 }
