@@ -1,12 +1,12 @@
-import { ToggleSwitchModule } from './toggle-switch/toggle-switch.module';
+import { ExactESignatureModule } from './exact-e-signature/exact-e-signature.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToggleSwitchModule } from './toggle-switch/toggle-switch.module';
 
-import { AppComponent } from './app.component';
-import { ToggleSwitchComponent } from './toggle-switch/toggle-switch.component';
-import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AppComponent } from './app.component';
+import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 
 @NgModule({
   declarations: [AppComponent, AutoCompleteComponent],
@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     ToggleSwitchModule,
+    ExactESignatureModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

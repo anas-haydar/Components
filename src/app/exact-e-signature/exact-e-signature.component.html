@@ -1,0 +1,16 @@
+<canvas
+  #sigPad
+  width="500"
+  height="200"
+  (touchstart)="onClickDown($event)"
+  (mousedown)="onClickDown($event)"
+  (mousemove)="onMove($event)"
+  (touchmove)="onMove($event)"
+></canvas>
+
+<button (click)="clear()">clear</button>
+<button (click)="save()">save</button>
+
+<br />
+<img [src]="img" />
+<br />
